@@ -9,6 +9,7 @@ export async function getRequest(url: string | URL): Promise<unknown> {
     method: 'GET',
     headers: {
       Accept: 'application/json',
+      'User-Agent': 'https://jsr.io/@timharek/openlibrary',
     },
   })
     .then((response) => response.json())
