@@ -44,11 +44,11 @@ const Date = z.object({
 });
 
 export const Book = z.object({
-  title: z.string(),
+  title: z.string().optional(),
   key,
-  authors: z.array(AuthorObj),
+  authors: z.array(AuthorObj).optional(),
   type: z.object({
-    key: z.string(),
+    key: z.enum(['/type/work', '/type/redirect']),
   }),
   description: z.string().or(z.object({
     type: z.literal('/type/text'),

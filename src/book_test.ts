@@ -5,6 +5,8 @@ Deno.test('Get book by `id`, Sapiens id: OL17075811W', async () => {
   const result = await book.get('OL17075811W');
 
   assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
   assertEquals(result.title.includes('Sapiens'), true, 'title');
   assertEquals(result.key, 'OL17075811W', 'key/id');
   assertEquals(result.authors.length === 1, true, 'authors length');
@@ -14,6 +16,8 @@ Deno.test('Get book by `isbn`, Sapiens id: OL17075811W', async () => {
   const result = await book.getByISBN('9780099590088');
 
   assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
   assertEquals(result.title.includes('Sapiens'), true, 'title');
   assertEquals(result.key, 'OL17075811W', 'key/id');
   assertEquals(result.authors.length === 1, true, 'authors length');
@@ -23,6 +27,8 @@ Deno.test('Get book by `isbn`, Sapiens id: OL17075811W', async () => {
   const result = await book.getByISBN('9780099590088');
 
   assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
   assertEquals(result.title.includes('Sapiens'), true, 'title');
   assertEquals(result.key, 'OL17075811W', 'key/id');
   assertEquals(result.authors.length === 1, true, 'authors length');
@@ -32,6 +38,8 @@ Deno.test('Get book by `isbn`, Essentialism 0753558696', async () => {
   const result = await book.getByISBN('0753558696');
 
   assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
   assertEquals(result.title.includes('Essentialism'), true, 'title');
   assertEquals(result.key, 'OL17043626W', 'key/id');
   assertEquals(result.authors.length === 1, true, 'authors length');
@@ -41,6 +49,8 @@ Deno.test('Get book by `isbn`, Talk Like TED: 9781250061539', async () => {
   const result = await book.getByISBN('9781250061539');
 
   assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
   assertEquals(result.title, 'Talk like TED', 'title');
   assertEquals(result.key, 'OL17076301W', 'key/id');
   assertEquals(result.authors.length === 1, true, 'authors length');
@@ -59,4 +69,15 @@ Deno.test('Search for book by title, Sapiens', async () => {
     searchResult.docs.find((value) => value.key.includes('OL17075811W')),
     'id',
   );
+});
+
+Deno.test('(redirect) Get book by `id`, War and Peace id: OL15236127W', async () => {
+  const result = await book.get('OL15236127W');
+
+  assertExists(result);
+  assertExists(result.title);
+  assertExists(result.authors);
+  assertEquals(result.title.includes('War and Peace'), true, 'title');
+  assertEquals(result.key, 'OL267171W', 'key/id');
+  assertEquals(result.authors.length === 1, true, 'authors length');
 });

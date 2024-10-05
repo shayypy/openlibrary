@@ -40,7 +40,18 @@ async function get(id: string): Promise<Book> {
   url.pathname = `/works/${id}.json`;
 
   const result = await getRequest(url);
-  return Book.parse(result);
+  const book = Book.parse(result);
+
+  // If the book has been moved to a different ID
+  if (book.type.key === '/type/redirect' && book.location) {
+    const id = book.location.split('/').at(-1);
+    if (!id) {
+      throw new Error('Bad redirect id');
+    }
+    return await get(id);
+  }
+
+  return book;
 }
 
 /**
