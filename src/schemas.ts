@@ -100,7 +100,7 @@ export const Book = z.object({
    * Redirects are handled automatically in `book.get`.
    */
   location: z.string().optional(),
-  contributions: z.array(z.string()),
+  contributions: z.array(z.string()).optional(),
   /**
    * Array of colon-separated source identifiers
    * 
