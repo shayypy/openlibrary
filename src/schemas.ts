@@ -43,7 +43,12 @@ const AuthorObj = z
       .object({
         key: z.string(),
       })
-      .transform((author) => ({ author })),
+      .transform((author) => ({
+        author,
+        type: {
+          key: "/type/author_role",
+        },
+      })),
   );
 
 const Date = z.object({
