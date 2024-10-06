@@ -113,7 +113,7 @@ export const Book = z.object({
   // to be the same.
   first_sentence: StringOrTextObject.optional(),
   number_of_pages: z.number().optional(),
-  works: z.array(z.object({ key })),
+  works: z.array(z.object({ key })).optional(),
   /** Internet archive ID */
   ocaid: z.string().optional(),
   isbn_10: z.array(z.string()).optional(),
