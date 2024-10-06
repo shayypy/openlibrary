@@ -29,14 +29,22 @@ export const Search = z.object({
   docs: z.array(Doc).default([]),
 });
 
-const AuthorObj = z.object({
-  author: z.object({
-    key: z.string(),
-  }),
-  type: z.object({
-    key: z.string(),
-  }),
-});
+const AuthorObj = z
+  .object({
+    author: z.object({
+      key: z.string(),
+    }),
+    type: z.object({
+      key: z.string(),
+    }),
+  })
+  .or(
+    z
+      .object({
+        key: z.string(),
+      })
+      .transform((author) => ({ author })),
+  );
 
 const Date = z.object({
   type: z.literal('/type/datetime'),
